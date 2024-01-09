@@ -48,6 +48,9 @@
 			"$className": "Workspace",
 			"$properties": {
 				"FilteringEnabled": true
+			},
+			"HurtBox": {
+				"$path": "assets/hurtbox.rbxm"
 			}
 		},
 		"HttpService": {

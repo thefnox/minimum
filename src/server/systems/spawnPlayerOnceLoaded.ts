@@ -8,7 +8,7 @@ import { ResetTransparency, SetTransparency } from "shared/utils/transparency";
 const spawnPlayerOnceLoaded = (world: World) => {
 	for (const [, player] of useEvent("ConfirmLoaded", remotes.input.confirmLoaded)) {
 		for (const [id, client] of world.query(Client)) {
-			if (player.GetAttribute("entityId") === id && !client.loaded) {
+			if (player.GetAttribute("serverEntityId") === id && !client.loaded) {
 				world.insert(id as AnyEntity, client.patch({ loaded: true }));
 			}
 		}

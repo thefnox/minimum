@@ -6,8 +6,7 @@ import { Image } from "../image";
 import { springs } from "client/ui/constants/springs";
 import { useMotion } from "client/ui/hooks";
 
-export const Vignette = () => {
-	const open = false;
+export const Vignette = ({ open }: { open: boolean }) => {
 	const [transition, transitionMotion] = useMotion(0);
 
 	useEffect(() => {

@@ -10,7 +10,7 @@ const Players = game.GetService("Players");
 
 const addPlayers = (world: World) => {
 	for (const player of Players.GetPlayers()) {
-		if (player.GetAttribute("entityId") === undefined) {
+		if (player.GetAttribute("serverEntityId") === undefined) {
 			const playerId = world.spawn(
 				Client({
 					player,

@@ -17,7 +17,6 @@ const StarterGui = game.GetService("StarterGui");
 
 StarterGui.SetCoreGuiEnabled(Enum.CoreGuiType.Health, false);
 StarterGui.SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false);
-StarterGui.SetCore("ResetButtonCallback", false);
 
 (async () => {
 	print("Preloading start");

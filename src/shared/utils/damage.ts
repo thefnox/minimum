@@ -2,6 +2,9 @@ import { DamageResistance } from "shared/components";
 import { DamageType } from "shared/constants/data";
 
 export const calculateResistance = (damageResistances: DamageResistance, damageType: DamageType) => {
+	if (damageResistances === undefined) {
+		return 0;
+	}
 	switch (damageType) {
 		case DamageType.Slash:
 			return damageResistances.slashResistance ?? 0;

@@ -42,5 +42,5 @@ Cmdr.Registry.RegisterHook("BeforeRun", (context: CommandContextWithWorld) => {
 	}
 });
 
-Cmdr.RegisterTypesIn(ReplicatedStorage.TS.commands.types);
+//Cmdr.RegisterTypesIn(ReplicatedStorage.TS.commands.types);
 Cmdr.RegisterCommandsIn(ReplicatedStorage.TS.commands);
