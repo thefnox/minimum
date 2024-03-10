@@ -1,18 +1,18 @@
-import Roact from "@rbxts/roact";
+import React from "@rbxts/react";
 
 import { FrameProps } from "../frame";
 
 export interface ImageProps extends FrameProps<ImageLabel> {
 	image: string;
-	imageColor?: Color3 | Roact.Binding<Color3>;
-	imageTransparency?: number | Roact.Binding<number>;
-	imageRectOffset?: Vector2 | Roact.Binding<Vector2>;
-	imageRectSize?: Vector2 | Roact.Binding<Vector2>;
-	aspectRatio?: number | Roact.Binding<number>;
-	scaleType?: Roact.InferEnumNames<Enum.ScaleType>;
-	sliceScale?: number | Roact.Binding<number>;
-	sliceCenter?: Rect | Roact.Binding<Rect>;
-	tileSize?: UDim2 | Roact.Binding<UDim2>;
+	imageColor?: Color3 | React.Binding<Color3>;
+	imageTransparency?: number | React.Binding<number>;
+	imageRectOffset?: Vector2 | React.Binding<Vector2>;
+	imageRectSize?: Vector2 | React.Binding<Vector2>;
+	aspectRatio?: number | React.Binding<number>;
+	scaleType?: React.InferEnumNames<Enum.ScaleType>;
+	sliceScale?: number | React.Binding<number>;
+	sliceCenter?: Rect | React.Binding<Rect>;
+	tileSize?: UDim2 | React.Binding<UDim2>;
 }
 
 export function Image(props: ImageProps) {

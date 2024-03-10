@@ -1,6 +1,6 @@
 import { useEventListener, useLatestCallback } from "@rbxts/pretty-react-hooks";
 import { createMotion, Motion, MotionGoal } from "@rbxts/ripple";
-import { Binding, useBinding, useEffect, useMemo } from "@rbxts/roact";
+import { Binding, useBinding, useEffect, useMemo } from "@rbxts/react";
 
 const RunService = game.GetService("RunService");
 

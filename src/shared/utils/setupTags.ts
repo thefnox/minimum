@@ -10,13 +10,13 @@ const CollectionService = game.GetService("CollectionService");
 const isServer = game.GetService("RunService").IsServer();
 
 export function setupTags(world: World, state: ClientState): void {
-	const entityKey = isServer ? "serverEntityId" : "clientEntityId";
+	const entityKey = isServer ? "id" : "clientEntityId";
 	function spawnBound(model: Model, component: ComponentCtor): void {
 		const newComponent = component();
 		if (model.GetAttribute(entityKey) !== undefined) {
 			const atts: Record<string, unknown> = {};
 			for (const [key, value] of pairs(model.GetAttributes())) {
-				if (key !== "serverEntityId" && key !== "clientEntityId") {
+				if (key !== "id" && key !== "clientEntityId") {
 					atts[key] = value;
 				}
 			}
@@ -31,7 +31,7 @@ export function setupTags(world: World, state: ClientState): void {
 			Transform({ cf: model.GetPivot() }),
 		);
 		if (!isServer) {
-			const serverId = model.GetAttribute("serverEntityId") as AnyEntity;
+			const serverId = model.GetAttribute("id") as AnyEntity;
 			if (serverId !== undefined) {
 				state.entityIdMap.set(`${serverId}`, id);
 			}

@@ -1,5 +1,5 @@
 import { World } from "@rbxts/matter";
-import { store } from "client/ui/store";
+import { store } from "client/store";
 import { Health, LocalClient, PlayerAdmin, PlayerModel, PlayerState } from "shared/components";
 import { ClientState } from "shared/constants/clientState";
 import { SystemPriority } from "shared/constants/systemPriority";

@@ -1,39 +1,34 @@
-import Roact from "@rbxts/roact";
-
-interface ReactErrorInfo {
-	readonly componentStack: string;
-}
+import React, { Component, ErrorInfo, ReactComponent } from "@rbxts/react";
 
 interface ErrorBoundaryProps {
-	readonly fallback: (error: unknown) => Roact.Element;
+	fallback: (error: unknown) => React.Element;
 }
 
 interface ErrorBoundaryState {
-	readonly hasError: boolean;
-	readonly message?: unknown;
+	hasError: boolean;
+	message?: unknown;
 }
 
-export class ErrorBoundary extends Roact.Component<ErrorBoundaryProps, ErrorBoundaryState> {
-	public readonly state: ErrorBoundaryState = { hasError: false };
+@ReactComponent
+export class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+	public state: ErrorBoundaryState = {
+		hasError: false,
+	};
 
-	constructor(props: ErrorBoundaryProps) {
-		super(props);
-	}
-
-	public componentDidCatch(message: unknown, errorInfo: ReactErrorInfo) {
-		warn(message, errorInfo.componentStack);
+	public componentDidCatch(message: unknown, info: ErrorInfo) {
+		warn(message, info.componentStack);
 
 		this.setState({
 			hasError: true,
-			message: `${message} ${errorInfo.componentStack}`,
+			message: `${message} ${info.componentStack}`,
 		});
 	}
 
 	public render() {
 		if (this.state.hasError) {
 			return this.props.fallback(this.state.message);
+		} else {
+			return this.props.children;
 		}
-
-		return this.props.children as Roact.Element | undefined;
 	}
 }

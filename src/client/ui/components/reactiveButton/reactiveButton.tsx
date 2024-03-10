@@ -1,6 +1,6 @@
 import { blend, lerpBinding, useUpdateEffect } from "@rbxts/pretty-react-hooks";
 import { composeBindings } from "@rbxts/pretty-react-hooks";
-import Roact from "@rbxts/roact";
+import React from "@rbxts/react";
 import { useMotion, useRem } from "../../hooks";
 
 import { Button } from "../button";
@@ -8,7 +8,7 @@ import { Frame } from "../frame";
 import { useButtonAnimation } from "./useButtonAnimation";
 import { useButtonState } from "./useButtonState";
 
-interface ReactiveButtonProps extends Roact.PropsWithChildren {
+interface ReactiveButtonProps extends React.PropsWithChildren {
 	onClick?: () => void;
 	onMouseDown?: () => void;
 	onMouseUp?: () => void;
@@ -17,21 +17,22 @@ interface ReactiveButtonProps extends Roact.PropsWithChildren {
 	onHover?: (hovered: boolean) => void;
 	onPress?: (pressed: boolean) => void;
 	enabled?: boolean;
-	size?: UDim2 | Roact.Binding<UDim2>;
-	position?: UDim2 | Roact.Binding<UDim2>;
-	anchorPoint?: Vector2 | Roact.Binding<Vector2>;
-	backgroundColor?: Color3 | Roact.Binding<Color3>;
-	backgroundTransparency?: number | Roact.Binding<number>;
-	cornerRadius?: UDim | Roact.Binding<UDim>;
-	layoutOrder?: number | Roact.Binding<number>;
+	size?: UDim2 | React.Binding<UDim2>;
+	position?: UDim2 | React.Binding<UDim2>;
+	anchorPoint?: Vector2 | React.Binding<Vector2>;
+	backgroundColor?: Color3 | React.Binding<Color3>;
+	backgroundTransparency?: number | React.Binding<number>;
+	cornerRadius?: UDim | React.Binding<UDim>;
+	layoutOrder?: number | React.Binding<number>;
 	animatePosition?: boolean;
+	clipsDescendants?: boolean;
 	animatePositionStrength?: number;
 	animatePositionDirection?: Vector2;
 	animateSize?: boolean;
 	animateSizeStrength?: number;
-	zIndex?: number | Roact.Binding<number>;
-	event?: Roact.JsxInstanceEvents<TextButton>;
-	change?: Roact.JsxInstanceChangeEvents<TextButton>;
+	zIndex?: number | React.Binding<number>;
+	event?: React.InstanceEvent<TextButton>;
+	change?: React.InstanceChangeEvent<TextButton>;
 }
 
 export function ReactiveButton({
@@ -51,6 +52,7 @@ export function ReactiveButton({
 	cornerRadius,
 	layoutOrder,
 	zIndex,
+	clipsDescendants = false,
 	animatePosition = true,
 	animatePositionStrength = 1,
 	animatePositionDirection = new Vector2(0, 1),
@@ -110,6 +112,7 @@ export function ReactiveButton({
 			layoutOrder={layoutOrder}
 			zIndex={zIndex}
 			event={event}
+			clipsDescendants={clipsDescendants}
 			change={change}
 		>
 			<Frame

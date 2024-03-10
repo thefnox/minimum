@@ -1,5 +1,5 @@
 import { AnyComponent, useEvent, World, log, AnyEntity } from "@rbxts/matter";
-import { remotes } from "shared/remotes";
+import { Replication } from "server/network";
 import { REPLICATED_COMPONENTS, REPLICATED_PLAYER_ONLY } from "shared/components/replicated";
 import type { ComponentNames } from "shared/components/serde";
 import { Client } from "shared/components";
@@ -97,7 +97,7 @@ const replication = (world: World) => {
 		const currentChangelog = changes.get(tostring(player.UserId));
 		if (currentChangelog !== undefined) {
 			log("Sending replication changes to player", player.Name, currentChangelog);
-			remotes.replication.replicationEvent.fire(player, currentChangelog);
+			Replication.fire(player, currentChangelog);
 			changes.delete(tostring(player.UserId));
 		}
 	}

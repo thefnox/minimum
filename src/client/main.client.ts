@@ -8,9 +8,9 @@ import { start } from "shared/start";
 import { receiveReplication } from "./receiveReplication";
 import { ClientState } from "shared/constants/clientState";
 import { setupTags } from "shared/utils/setupTags";
-import { remotes } from "shared/remotes";
-import "./ui/app";
+import "./initUI";
 import { PreloadClientAssets } from "client/ui/utils/preloadClientAssets";
+import { ConfirmLoaded } from "./network";
 
 const ReplicatedStorage = game.GetService("ReplicatedStorage");
 const StarterGui = game.GetService("StarterGui");
@@ -20,7 +20,7 @@ StarterGui.SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, false);
 
 (async () => {
 	print("Preloading start");
-	remotes.input.confirmLoaded.fire();
+	ConfirmLoaded.fire();
 	await PreloadClientAssets();
 	print("Preloading ended");
 })();

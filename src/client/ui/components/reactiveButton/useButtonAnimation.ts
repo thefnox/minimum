@@ -1,5 +1,5 @@
 import { useUpdateEffect } from "@rbxts/pretty-react-hooks";
-import Roact, { useMemo } from "@rbxts/roact";
+import Roact, { useMemo } from "@rbxts/react";
 import { springs } from "../../constants/springs";
 import { useMotion } from "../../hooks";
 
@@ -78,8 +78,8 @@ export function useButtonAnimation(pressedState: boolean, hoveredState: boolean)
 	return useMemo<ButtonAnimation>(() => {
 		return {
 			press,
-			hover: hover.map((t) => math.clamp(t, 0, 1)),
-			hoverOnly: hoverExclusive.map((t) => math.clamp(t, 0, 1)),
+			hover: hover.map((t: number) => math.clamp(t, 0, 1)),
+			hoverOnly: hoverExclusive.map((t: number) => math.clamp(t, 0, 1)),
 			position,
 		};
 	}, []);

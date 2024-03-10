@@ -13,7 +13,6 @@ interface ReplicatedStorage extends Instance {
 		};
 		setupTags: ModuleScript;
 		start: ModuleScript;
-		remotes: ModuleScript;
 	};
 	rbxts_include: Folder & {
 		RuntimeLib: ModuleScript;

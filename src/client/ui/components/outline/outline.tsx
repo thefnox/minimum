@@ -1,19 +1,19 @@
 import { blend, composeBindings } from "@rbxts/pretty-react-hooks";
-import Roact, { useMemo } from "@rbxts/roact";
+import React, { useMemo } from "@rbxts/react";
 import { palette } from "../../constants/palette";
 
 import { useRem } from "../../hooks";
 import { Group } from "../group";
 
-interface OutlineProps extends Roact.PropsWithChildren {
-	readonly outlineTransparency?: number | Roact.Binding<number>;
-	readonly innerColor?: Color3 | Roact.Binding<Color3>;
-	readonly outerColor?: Color3 | Roact.Binding<Color3>;
-	readonly innerTransparency?: number | Roact.Binding<number>;
-	readonly outerTransparency?: number | Roact.Binding<number>;
-	readonly innerThickness?: number | Roact.Binding<number>;
-	readonly outerThickness?: number | Roact.Binding<number>;
-	readonly cornerRadius?: UDim | Roact.Binding<UDim>;
+interface OutlineProps extends React.PropsWithChildren {
+	readonly outlineTransparency?: number | React.Binding<number>;
+	readonly innerColor?: Color3 | React.Binding<Color3>;
+	readonly outerColor?: Color3 | React.Binding<Color3>;
+	readonly innerTransparency?: number | React.Binding<number>;
+	readonly outerTransparency?: number | React.Binding<number>;
+	readonly innerThickness?: number | React.Binding<number>;
+	readonly outerThickness?: number | React.Binding<number>;
+	readonly cornerRadius?: UDim | React.Binding<UDim>;
 }
 
 function ceilEven(n: number) {

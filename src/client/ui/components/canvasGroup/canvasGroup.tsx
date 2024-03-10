@@ -1,10 +1,10 @@
-import Roact, { forwardRef, Ref } from "@rbxts/roact";
+import React, { forwardRef, Ref } from "@rbxts/react";
 
 import { FrameProps } from "../frame";
 
 export interface CanvasGroupProps extends FrameProps<CanvasGroup> {
-	groupColor?: Color3 | Roact.Binding<Color3>;
-	groupTransparency?: number | Roact.Binding<number>;
+	groupColor?: Color3 | React.Binding<Color3>;
+	groupTransparency?: number | React.Binding<number>;
 }
 
 export const CanvasGroup = forwardRef((props: CanvasGroupProps, ref: Ref<CanvasGroup>) => {

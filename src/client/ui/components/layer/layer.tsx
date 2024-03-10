@@ -1,10 +1,9 @@
-import Roact from "@rbxts/roact";
+import React from "@rbxts/react";
+import { RunService } from "@rbxts/services";
 
 import { Group } from "../group";
 
-const RunService = game.GetService("RunService");
-
-interface LayerProps extends Roact.PropsWithChildren {
+interface LayerProps extends React.PropsWithChildren {
 	displayOrder?: number;
 }
 

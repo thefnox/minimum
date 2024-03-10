@@ -1,6 +1,5 @@
 import { lerpBinding } from "@rbxts/pretty-react-hooks";
-import { useSelector } from "@rbxts/react-reflex";
-import Roact, { useEffect } from "@rbxts/roact";
+import React, { useEffect } from "@rbxts/react";
 import { palette, images } from "client/ui/constants";
 import { Image } from "../image";
 import { springs } from "client/ui/constants/springs";

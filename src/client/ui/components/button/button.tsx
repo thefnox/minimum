@@ -1,9 +1,9 @@
-import Roact from "@rbxts/roact";
+import React from "@rbxts/react";
 
 import { FrameProps } from "../frame";
 
 export interface ButtonProps extends FrameProps<TextButton> {
-	active?: boolean | Roact.Binding<boolean>;
+	active?: boolean | React.Binding<boolean>;
 	onClick?: () => void;
 	onMouseDown?: () => void;
 	onMouseUp?: () => void;

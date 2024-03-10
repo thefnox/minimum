@@ -28,7 +28,7 @@ const applyDamage = (world: World) => {
 			for (const part of results) {
 				if (part.Parent?.IsA("Model")) {
 					const model = part.Parent as Model;
-					const entityId = model?.GetAttribute("serverEntityId") as AnyEntity;
+					const entityId = model?.GetAttribute("id") as AnyEntity;
 					if (entityId !== undefined && world.contains(entityId)) {
 						const [targetHealth, client] = world.get(entityId, Health, Client);
 						if (!affectsPlayers && client !== undefined) {

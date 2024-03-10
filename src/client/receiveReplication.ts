@@ -1,4 +1,4 @@
-import { remotes } from "shared/remotes";
+import { Replication } from "./network";
 import * as Components from "shared/components";
 import { ComponentNames, UnionComponentsMap } from "shared/components/serde";
 import { AnyComponent, ComponentCtor } from "@rbxts/matter/lib/component";
@@ -17,20 +17,21 @@ export const receiveReplication = (world: World, state: ClientState) => {
 		}
 	};
 
-	remotes.replication.replicationEvent.connect((entities) => {
+	Replication.on((_entities: unknown) => {
+		const entities = _entities as Map<string, Map<ComponentNames, { data: AnyComponent }>>;
 		debugPrint("receiving replication", entities, HttpService.JSONEncode(entityIdMap));
-		for (const [serverEntityId, componentMap] of entities) {
-			let clientEntityId = entityIdMap.get(serverEntityId);
+		for (const [id, componentMap] of entities) {
+			let clientEntityId = entityIdMap.get(id);
 
 			if (clientEntityId !== undefined && next(componentMap)[0] === undefined) {
 				if (world.contains(clientEntityId)) {
 					world.despawn(clientEntityId);
 				}
-				entityIdMap.delete(serverEntityId);
+				entityIdMap.delete(id);
 				continue;
 			}
 
-			debugPrint("serverEntityId", serverEntityId, "clientEntityId", clientEntityId, componentMap);
+			debugPrint("id", id, "clientEntityId", clientEntityId, componentMap);
 
 			const componentsToInsert = new Array<AnyComponent>();
 			const componentsToRemove = new Array<ComponentCtor>();
@@ -54,9 +55,13 @@ export const receiveReplication = (world: World, state: ClientState) => {
 					world.insert(clientEntityId, ...componentsToInsert);
 				}
 
-				entityIdMap.set(serverEntityId, clientEntityId as AnyEntity);
-				debugPrint("Spawned", clientEntityId, "(Server: ", serverEntityId, ") with", insertNames.join(", "));
+				entityIdMap.set(id, clientEntityId as AnyEntity);
+				debugPrint("Spawned", clientEntityId, "(Server: ", id, ") with", insertNames.join(", "));
 			} else {
+				if (!world.contains(clientEntityId)) {
+					world.spawnAt(clientEntityId);
+				}
+
 				if (componentsToInsert.size() > 0) {
 					world.insert(clientEntityId, ...componentsToInsert);
 				}
@@ -69,7 +74,7 @@ export const receiveReplication = (world: World, state: ClientState) => {
 					string.format(
 						"Modify %ds%d adding %s, removing %s",
 						clientEntityId,
-						serverEntityId,
+						id,
 						insertNames.size() > 0 ? insertNames.join(", ") : "nothing",
 						removeNames.size() > 0 ? removeNames.join(", ") : "nothing",
 					),

@@ -3,7 +3,7 @@ import { BoundEntities } from "shared/components";
 
 const isServer = game.GetService("RunService").IsServer();
 
-const entityKey = isServer ? "serverEntityId" : "clientEntityId";
+const entityKey = isServer ? "id" : "clientEntityId";
 
 const destroyBoundEntities = (world: World) => {
 	for (const [id, boundEntities] of world.queryChanged(BoundEntities)) {

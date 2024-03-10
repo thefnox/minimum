@@ -1,7 +1,5 @@
 import { createProducer } from "@rbxts/reflex";
 import { PlayerGameState } from "shared/constants/playerState";
-import { remotes } from "shared/remotes";
-
 export interface AppState {
 	isAdmin: boolean;
 	loaded: boolean;

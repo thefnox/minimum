@@ -1,10 +1,10 @@
 import { useEventListener, useLatest } from "@rbxts/pretty-react-hooks";
-import { useMemo, useState } from "@rbxts/roact";
+import React, { useMemo, useState } from "@rbxts/react";
+import { UserInputService } from "@rbxts/services";
 import { setTimeout } from "@rbxts/set-timeout";
 
 import { useInputDevice } from "../../hooks/useInputDevice";
 
-const UserInputService = game.GetService("UserInputService");
 export interface ButtonEvents {
 	onMouseDown: () => void;
 	onMouseUp: () => void;
@@ -18,7 +18,7 @@ export interface ButtonEvents {
  * @returns The press state, hover state, and a `ButtonEvents` object.
  */
 export function useButtonState(enabled = true): LuaTuple<[press: boolean, hover: boolean, events: ButtonEvents]> {
-	const [{ press, hover }, setState] = useState({
+	const [{ press, hover }, setState] = useState<{ press: boolean; hover: boolean }>({
 		press: false,
 		hover: false,
 	});

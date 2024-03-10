@@ -1,6 +1,6 @@
 import { blend, lerpBinding } from "@rbxts/pretty-react-hooks";
 import { composeBindings } from "@rbxts/pretty-react-hooks";
-import Roact from "@rbxts/roact";
+import React from "@rbxts/react";
 import { images } from "../../constants/images";
 import { palette } from "../../constants/palette";
 
@@ -11,17 +11,18 @@ import { Outline } from "../outline";
 import { ReactiveButton } from "../reactiveButton";
 import { Shadow } from "../shadow";
 
-interface PrimaryButtonProps extends Roact.PropsWithChildren {
+interface PrimaryButtonProps extends React.PropsWithChildren {
 	readonly onClick?: () => void;
 	readonly onHover?: (hovered: boolean) => void;
-	readonly size?: UDim2 | Roact.Binding<UDim2>;
-	readonly position?: UDim2 | Roact.Binding<UDim2>;
-	readonly anchorPoint?: Vector2 | Roact.Binding<Vector2>;
-	readonly overlayGradient?: ColorSequence | Roact.Binding<ColorSequence>;
-	readonly overlayTransparency?: number | Roact.Binding<number>;
-	readonly overlayRotation?: number | Roact.Binding<number>;
-	readonly layoutOrder?: number | Roact.Binding<number>;
-	readonly disabled?: boolean | Roact.Binding<boolean>;
+	readonly size?: UDim2 | React.Binding<UDim2>;
+	readonly position?: UDim2 | React.Binding<UDim2>;
+	readonly anchorPoint?: Vector2 | React.Binding<Vector2>;
+	readonly overlayGradient?: ColorSequence | React.Binding<ColorSequence>;
+	readonly overlayTransparency?: number | React.Binding<number>;
+	readonly overlayRotation?: number | React.Binding<number>;
+	readonly layoutOrder?: number | React.Binding<number>;
+	readonly disabled?: boolean | React.Binding<boolean>;
+	readonly clipsDescendants?: boolean;
 }
 
 export function PrimaryButton({
@@ -33,6 +34,7 @@ export function PrimaryButton({
 	overlayGradient,
 	overlayTransparency = 0,
 	overlayRotation,
+	clipsDescendants,
 	layoutOrder,
 	disabled,
 	children,
@@ -52,6 +54,7 @@ export function PrimaryButton({
 			size={size}
 			position={position}
 			layoutOrder={layoutOrder}
+			clipsDescendants={clipsDescendants}
 		>
 			<Shadow
 				key="drop-shadow"

@@ -14,6 +14,7 @@ export function start<S extends object>(
 	state: S,
 ): (...plugins: Array<(world: World, state: S) => void>) => World {
 	const world = new World();
+	const production = $env.string("ENV") === "production";
 
 	// Set up debugging
 	const myDebugger = new Debugger(Plasma);
@@ -76,8 +77,10 @@ export function start<S extends object>(
 		}
 	}
 
-	for (const container of containers) {
-		hotReloader.scan(container, loadModule, unloadModule);
+	if (!production) {
+		for (const container of containers) {
+			hotReloader.scan(container, loadModule, unloadModule);
+		}
 	}
 
 	loop.scheduleSystems(firstRunSystems);

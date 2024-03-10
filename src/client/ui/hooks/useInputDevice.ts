@@ -1,5 +1,5 @@
 import { useEventListener } from "@rbxts/pretty-react-hooks";
-import { useState } from "@rbxts/roact";
+import { useState } from "@rbxts/react";
 
 const UserInputService = game.GetService("UserInputService");
 export type InputDevice = "keyboard" | "gamepad" | "touch";

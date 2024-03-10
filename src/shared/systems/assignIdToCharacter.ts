@@ -3,7 +3,7 @@ import { PlayerModel } from "shared/components";
 
 const isServer = game.GetService("RunService").IsServer();
 
-const entityKey = isServer ? "serverEntityId" : "clientEntityId";
+const entityKey = isServer ? "id" : "clientEntityId";
 
 const assignIdToCharacter = (world: World) => {
 	for (const [id, changed] of world.queryChanged(PlayerModel)) {

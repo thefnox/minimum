@@ -1,4 +1,4 @@
-import Roact from "@rbxts/roact";
+import React from "@rbxts/react";
 
 import { ErrorHandler } from "../components/errorHandler";
 import { Layer } from "../components/layer";

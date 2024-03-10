@@ -10,7 +10,7 @@ const Players = game.GetService("Players");
 
 const addPlayers = (world: World) => {
 	for (const player of Players.GetPlayers()) {
-		if (player.GetAttribute("serverEntityId") === undefined) {
+		if (player.GetAttribute("id") === undefined) {
 			const playerId = world.spawn(
 				Client({
 					player,
@@ -35,13 +35,13 @@ const addPlayers = (world: World) => {
 				}
 			})();
 			print("Spawning player", player.Name, "with entity", playerId);
-			player.SetAttribute("serverEntityId", playerId);
+			player.SetAttribute("id", playerId);
 		}
 	}
 
 	for (const [, player] of useEvent(Players, "PlayerRemoving")) {
 		// Upon player disconnection, first set the player state to disconnected
-		const playerId = player.GetAttribute("serverEntityId") as AnyEntity;
+		const playerId = player.GetAttribute("id") as AnyEntity;
 		if (playerId !== undefined && world.contains(playerId)) {
 			print("Disconnecting player", player.Name);
 			world.insert(playerId, PlayerState({ state: PlayerGameState.Disconnected }));

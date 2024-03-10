@@ -1,5 +1,5 @@
 import { World } from "@rbxts/matter";
-import { store } from "client/ui/store";
+import { store } from "client/store";
 import { Client, LocalClient } from "shared/components";
 import { SystemPriority } from "shared/constants/systemPriority";
 

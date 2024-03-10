@@ -4,7 +4,7 @@ import { TRIGGER_COMPONENTS } from "shared/components/trigger";
 
 const isServer = game.GetService("RunService").IsServer();
 
-const entityKey = isServer ? "serverEntityId" : "clientEntityId";
+const entityKey = isServer ? "id" : "clientEntityId";
 const touchCallback = (world: World, id: AnyEntity, part: BasePart) => {
 	if (!world.contains(id)) {
 		return;

@@ -1,4 +1,5 @@
-import Roact, { useEffect } from "@rbxts/roact";
+import React, { useEffect } from "@rbxts/react";
+import { TeleportService } from "@rbxts/services";
 import { Frame } from "client/ui/components/frame";
 import { Group } from "client/ui/components/group";
 import { Layer } from "client/ui/components/layer";
@@ -12,8 +13,6 @@ import { useRem } from "client/ui/hooks";
 interface ErrorPageProps {
 	readonly message: unknown;
 }
-
-const TeleportService = game.GetService("TeleportService");
 
 export function ErrorPage({ message }: ErrorPageProps) {
 	const rem = useRem();
@@ -33,7 +32,7 @@ export function ErrorPage({ message }: ErrorPageProps) {
 
 				<Text
 					key="icon"
-					text="☠"
+					text="🐍"
 					textSize={rem(5)}
 					size={new UDim2(0, rem(5), 0, rem(5))}
 					layoutOrder={index++}
